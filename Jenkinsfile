@@ -19,7 +19,8 @@ pipeline {
         }
         stage('Git Pulling') {
             steps {
-                    git_branch:'master'  url:'https://github.com/Hariharnath007/EKS-Terraform-GitHub-Actions.git'
+                    //git_branch:'master'  url:'https://github.com/Hariharnath007/EKS-Terraform-GitHub-Actions.git'
+                 sh 'echo passed'
               }
         }
         stage('Init') {
