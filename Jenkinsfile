@@ -19,8 +19,7 @@ pipeline {
         }
         stage('Git Pulling') {
             steps {
-                    withCredentials([usernamePassword(credentialsId: 'my-git-credentials', usernameVariable: 'Username', passwordVariable: 'Password')]) {
-                        sh 'git pull https://github.com/Hariharnath007/EKS-Terraform-GitHub-Actions.git'
+                    git_branch:'master'  url:'https://github.com/Hariharnath007/EKS-Terraform-GitHub-Actions.git'
                     }
                 }
         }
