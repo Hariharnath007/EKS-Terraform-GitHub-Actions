@@ -19,13 +19,16 @@ pipeline {
         }
         stage('Git Pulling') {
             steps {
-                    //git_branch:'master'  url:'https://github.com/Hariharnath007/EKS-Terraform-GitHub-Actions.git'
-                 sh 'echo passed'
+                    git branch: 'master', url: 'https://github.com/Hariharnath007/EKS-Terraform-GitHub-Actions.git'
               }
+        }
+        stage('terraform-migrate'){
+                 steps{
+                     sh 'terraform init -migrate-state'
+                 }
         }
         stage('Init') {
             steps {
-                sh 'terraform init -migrate-state'
                 withAWS(credentials: 'aws-creds', region: 'us-east-1') {
                 sh 'terraform -chdir=eks/ init'
                 }
