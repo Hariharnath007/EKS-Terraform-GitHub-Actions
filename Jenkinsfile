@@ -24,8 +24,10 @@ pipeline {
         }
         stage('terraform-migrate'){
                  steps{
-                     sh 'terraform init -migrate-state'
-                 }
+                     withAWS(credentials: 'aws-creds', region: 'us-east-1') {
+                     sh 'terraform -chdir=eks/ terraform init -migrate-state'
+                }
+            }
         }
         stage('Init') {
             steps {
